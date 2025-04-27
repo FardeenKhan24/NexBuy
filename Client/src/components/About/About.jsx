@@ -73,7 +73,9 @@ const About = () => {
           >
             <FaLinkedin />
           </Link>
+          <Link to="https://github.com/FardeenKhan24">
           <FaGithub className="git-ico" />
+          </Link>
         </div>
       </div>
     </div>
