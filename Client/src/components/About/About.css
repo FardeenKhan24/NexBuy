@@ -1,0 +1,123 @@
+.about-container{
+    font-family: urbanist,sans-serif;
+}
+
+.about{
+    padding: 10rem 20rem;
+
+}
+
+.about h1{
+    color: rgb(130 84 248 );
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.about p{
+    line-height: 1.75rem;
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+}
+
+.about p span{
+    color: rgb(130 84 248 );
+}
+
+.react-icos{
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+    margin-bottom: 20px;
+}
+
+.all-icos{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.mongo-icon{
+    font-size: 60px;
+    color: green;
+}
+
+.mongo-icon:hover{
+    color: darkgreen;
+}
+
+.icon-block p{
+    text-align: center;
+}
+
+.react-ico{
+    font-size: 60px;
+    color: rgb(130 84 248 )
+}
+
+
+.react-ico:hover{
+    color: rgb(20 158 202);
+}
+
+.git-ico{
+    font-size: 60px;
+}
+
+body.light-mode .linkedin-icon{
+    color: black;
+  }
+  
+  body.dark-mode .linkedin-icon{
+    color: silver;
+  }
+
+  body.light-mode .git-ico {
+    color: black;
+  }
+  
+  body.dark-mode .git-ico {
+    color: silver;
+  }
+  
+  .linkedin-icon {
+    font-size: 60px;
+    transition: color 0.3s ease;
+  }
+  
+  .linkedin-icon:hover {
+    color: rgb(58, 118, 197) !important;
+  }
+  
+
+.git-ico:hover{
+    color: gray !important;
+    cursor: pointer;
+}
+
+.node-ico{
+    font-size: 60px;
+}
+
+.node-ico:hover{
+    color: rgb(12, 237, 12);
+}
+
+.express-ico{
+    font-size: 60px;
+}
+
+.express-ico:hover{
+    color: rgb(223, 169, 169);
+}
+
+@media (max-width:1300px){
+    .about{
+        padding: 80px;
+    }
+}
+
+@media (max-width:700px){
+    .all-icos{
+        justify-content: space-between;
+    }
+}

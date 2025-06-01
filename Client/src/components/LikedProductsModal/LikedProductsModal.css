@@ -1,0 +1,109 @@
+body.light-mode .modal-content{
+  background-color: white;
+  color: black;
+}
+
+body.dark-mode .modal-content{
+  background-color: black;
+  color: white;
+}
+
+body.light-mode .close-btn{
+  color: black;
+}
+
+body.dark-mode .close-btn{
+  background-color: white;
+}
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .modal-content {
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    max-height: 80vh;
+    height: 60%;
+    overflow-y: auto;
+  }
+  
+  .modal-header {
+    position: relative;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  .modal-header button{
+    position: absolute;
+    top: -1px;
+    right: 2px;
+  }
+
+  body.light-mode .liked-product{
+    border-bottom: 1px solid black;
+  }
+
+  body.dark-mode .liked-product{
+    border-bottom: 1px solid white;
+  }
+  
+  .liked-product {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .liked-product img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+  }
+  
+  .close-btn {
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+  }
+
+  .info h4,p{
+    padding-bottom: 8px;
+  }
+
+  body.light-mode .more-details{
+    color: black;
+  }
+
+  body.dark-mode .more-details{
+    color: white;
+  }
+
+  .more-details {
+    text-decoration: underline;
+    text-decoration-color: blue;
+  }
+
+  .more-details:hover{
+    color: rgb(51, 51, 240) !important;
+  }
+
+ 
+  
+ 
+  

@@ -1,0 +1,232 @@
+.cart-container{
+    padding:10px 30px;
+    min-height: 100vh;
+    display: flex; 
+    justify-content: space-between;
+}
+
+.cart-container1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 1px solid white;
+    margin: 10px;
+    height: auto;
+}
+
+body.dark-mode .cart-container1{
+    border-bottom: 1px solid white;
+}
+
+body.light-mode .cart-container1{
+    border-bottom: 1px solid black;
+}
+
+body.dark-mode .order-container{
+    background-color: white;
+    color: black;
+}
+
+body.light-mode .order-container{
+    background-color: black;
+    color: white;
+}
+
+body.dark-mode .quantity button{
+    border: 1px solid white;
+    background-color: black;
+    color: white;
+}
+
+body.light-mode .quantity button{
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+}
+
+.clear{
+    display: inline-block;
+    padding-top: 20px;
+    padding-left: 40px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.clear:hover{
+    color: gray;
+}
+
+.cart-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.image-and-details {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+}
+
+
+.quantity{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.quantity p{
+    font-size: 18px;
+}
+
+.quantity button{
+    padding: 10px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.product-desc p{
+    margin-bottom: 10px;
+    font-family: Karla, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 700;
+}
+
+.product-desc p span{
+    font-family: Karla, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: normal;
+}
+
+.cart-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+
+.no-items img {
+    width: 100%;
+    height: auto;
+    max-width: 740px; 
+}
+
+
+.order-container{
+    padding: 25px 40px;
+    border-radius: 8px;
+    width: auto;
+    height: auto;
+    align-self: flex-start;
+}
+
+.order-container p{
+    font-family: Karla, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 8px 0;
+}
+
+.order-container .sub{
+    font-family: Karla, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 700;
+}
+
+.order{
+    margin: 0px 0px 10px;
+    font-family: Karla, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.334;
+    font-weight: 700;
+}
+
+.order-container button{
+    background-color: #90CAF9;
+    padding: 6px 16px;
+    width: 100%;
+    border: none;
+    margin: 10px 0 0;
+    font-family: Karla, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.75;
+    cursor: pointer;
+}
+
+.order-container button:hover{
+    background-color: rgb(47, 193, 241);
+}
+  
+  .order-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+  }
+
+  .order-items {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    border-bottom: 1px solid black;
+  }
+
+  .delete-cont{
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  .delete-cont:hover{
+    color: red;
+  }
+
+  .buy-now-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .buy-now-btn:hover {
+    background-color: #218838;
+  }
+  
+
+  @media (max-width:900px){
+    .cart-container{
+        flex-direction: column;
+    }
+
+    .order-container{
+        align-self: auto;
+    }
+  }
+
+  @media (max-width:500px){
+
+    .cart-container1{
+        flex-direction: column;
+    }
+
+    .cart-actions{
+        flex-direction: column;
+    }
+
+    .buy-now-btn{
+        margin: 10px 0;
+    }
+}
+  

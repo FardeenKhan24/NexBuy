@@ -1,0 +1,32 @@
+.buy-container{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.orders .summary,.date{
+    text-align: center;
+    margin:20px 0;
+}
+
+.buy-item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.buy-item p{
+    margin-bottom: 5px;
+}
+
+.buy-item img{
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+}
+
+.total h3{
+    text-align: center;
+    margin:20px 0;
+}
