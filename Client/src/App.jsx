@@ -45,11 +45,7 @@ const App = () => {
           <Route path="/register" element={<PublicRoutes><Register /></PublicRoutes>} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/products" element={<Product />} />
-          <Route path="/cart" element={
-            <ProtectedRoutes>
-              <Cart />
-            </ProtectedRoutes>
-          } />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/buy" element={
             <ProtectedRoutes>
               <BuyNow />
