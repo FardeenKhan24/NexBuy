@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { FaShoppingCart, FaRegUser, FaMoon } from "react-icons/fa";
 import { TbShoppingBagSearch } from "react-icons/tb";
 import { MdWbSunny } from "react-icons/md";
@@ -16,6 +16,7 @@ const Navbar = () => {
   const [profile, setProfile] = useState(false);
   const [hamburger,setHamburger] = useState(false)
   const [showLikedModal, setShowLikedModal] = useState(false); 
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const likedProducts = useSelector(state => state.product.likedProducts);
@@ -34,8 +35,13 @@ const Navbar = () => {
     dispatch(toggleTheme());
   };
 
-  const handleLogout = () => {
-    dispatch(logoutUser());
+   const handleLogout = async () => {
+    try {
+      await dispatch(logoutUser())
+      navigate('/login');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
   const handleHam = () => {
