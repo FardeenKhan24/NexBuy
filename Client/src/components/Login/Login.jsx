@@ -4,6 +4,8 @@ import { loginSuccess } from '../../features/userSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaRegEye } from "react-icons/fa";
+import { fetchCart } from '../../features/cartSlice';
+import { fetchProducts } from '../../features/productSliceApi';
 import './Login.css';
 
 const Login = () => {
@@ -28,7 +30,8 @@ const Login = () => {
         const user = res.data.user;
         const token = res.data.token
         dispatch(loginSuccess({user,token}));
-
+        dispatch(fetchCart());
+        dispatch(fetchProducts())
         navigate('/');
       } else {
         setError('Login successful but user data is missing in response.');
