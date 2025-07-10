@@ -121,8 +121,10 @@ body.light-mode .linkedin-icon{
 
 
 @media (max-width:700px){
-    .all-icos{
-        justify-content: space-between;
+    .all-icos {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
     }
 
       .about {
@@ -132,5 +134,6 @@ body.light-mode .linkedin-icon{
   .react-icos {
     flex-direction: column;
     gap: 2rem;
+    align-items: center;
   }
 }
