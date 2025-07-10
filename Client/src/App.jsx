@@ -7,18 +7,19 @@ import {Home,About,Login,Register,Product,ProductDetails,Cart,BuyNow,Profile,Ord
 const App = () => {
   const dispatch = useDispatch()
   const darkMode = useSelector((state) => state.theme.darkMode);
+  const user = useSelector(state => state.user.user);
   const location = useLocation();
   const hide = location.pathname === "/login" || location.pathname === "/register";
 
   useEffect(() => {
     document.body.className = darkMode ? "dark-mode" : "light-mode";
 
-    if(localStorage.getItem("token")){
+    if(user){
       dispatch(fetchCart())
     }
 
     dispatch(fetchProducts())
-  }, [darkMode,dispatch]);
+  }, [darkMode,dispatch,user]);
 
   return (
     <div className="App">
