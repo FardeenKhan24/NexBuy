@@ -116,8 +116,21 @@ body.light-mode .linkedin-icon{
     }
 }
 
+
+
+
+
 @media (max-width:700px){
     .all-icos{
         justify-content: space-between;
     }
+
+      .about {
+    padding: 40px 20px; 
+  }
+
+  .react-icos {
+    flex-direction: column;
+    gap: 2rem;
+  }
 }
