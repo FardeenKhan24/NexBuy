@@ -11,7 +11,7 @@ const BuyNow = () => {
     return null;
   }
 
-  const { cartItems, totalPrice, orderDate, shipping, subtotal } = state;
+  const { cartItems, totalPrice, orderDate, shipping, subtotal, arrivalDate } = state;
 
   return (
     <div className="buy-container">
@@ -19,6 +19,7 @@ const BuyNow = () => {
         <h2 className='summary'>Your Order Has Been Placed</h2>
         <h3 className='summary'>Order Summary</h3>
         <p className='date'><strong>Order Date:</strong> {orderDate}</p>
+        <p className='date'><strong>Estimated Arrival:</strong> <span style={{ color: 'green' }}>{arrivalDate}</span></p>
 
         {cartItems.map((item, index) => {
           const product = item.product ? item.product : item; 

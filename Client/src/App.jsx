@@ -12,6 +12,7 @@ import Profile from './components/Profile/Profile';
 import ProductDetails from './components/ProductDetails/ProductDetails.jsx';
 import BuyNow from './components/BuyNow/BuyNow.jsx';
 import About from './components/About/About.jsx';
+import Order from './components/Order/Order.jsx';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes.jsx';
 import { fetchProducts } from '../src/features/productSliceApi.js';
 import { fetchCart } from '../src/features/cartSlice.js';
@@ -54,6 +55,11 @@ const App = () => {
           <Route path="/profile" element={
             <ProtectedRoutes>
               <Profile />
+            </ProtectedRoutes>
+          } />
+          <Route path="/order" element={
+            <ProtectedRoutes>
+              <Order />
             </ProtectedRoutes>
           } />
         </Routes>

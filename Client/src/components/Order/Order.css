@@ -1,0 +1,81 @@
+.order-page {
+  min-height: 100vh;
+  padding-top: 40px; 
+  display: block; 
+}
+
+
+.order-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.order-itemss {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.order-it {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  border-top: 2px dashed #ddd;
+  border-bottom: 2px solid #ddd;
+  padding: 10px 0;
+} 
+
+
+.order-item-image {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border: 1px solid #eee;
+  background: white;
+}
+
+body.dark-mode .order-card {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .order-card .order-item-image {
+  background-color: #2c2c2c;
+}
+
+.order-history-container {
+  padding: 20px;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+.total{
+  margin-top: 8px;
+}
+
+@media (min-width: 1200px) {
+  .order-history-container {
+    max-width: 1100px;
+  }
+
+  .order-card {
+    padding: 25px;
+    font-size: 1.1rem;
+  }
+
+  .order-item-image {
+    width: 90px;
+    height: 90px;
+  }
+
+  .order-it {
+    gap: 20px;
+  }
+}
+

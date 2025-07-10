@@ -55,52 +55,40 @@ body.dark-mode .land-img {
     margin-bottom: 50px;
 }
 
-body.light-mode .explore {
-    border: 2px solid white;
-}
-  
-body.dark-mode .explore {
-    border: 2px solid black;
-}
-
-body.light-mode .explore:hover {
-    border: 2px solid white;
-    color: blue;
-    border: 2px solid rgb(33, 33, 235);
-}
-  
-body.dark-mode .explore:hover {
-    border: 2px solid black;
-    color: blue;
-    border: 2px solid rgb(33, 33, 235);
-}
 
 .explore {
-    box-sizing: border-box;
-    padding: 20px 30px;
-    cursor: pointer;
-    width: fit-content;
-    max-width: 100%;
+  padding: 15px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 2px solid;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border-radius: 8px;
+  display: inline-block;
 }
+
+body.light-mode .explore {
+  color: white;
+}
+
+body.dark-mode .explore {
+  color: black;
+}
+
+.explore:hover {
+  background: linear-gradient(135deg, #4338ca, #6366f1);
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
 
 .landing-bottom{
     height: 100px;
 }
 
 
-@media (max-width: 600px) {
-    .explore {
-        padding: 10px 20px;
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 435px) {
-    .explore {
-        padding: 15px 20px;
-        font-size: 12px;
-    }
-}
 
 
 

@@ -20,6 +20,20 @@ body.dark-mode .navbar-container {
     color: #fff;
     border-bottom: 1px solid white;
 }
+
+body.dark-mode .nav-active li {
+  border-bottom: 2px solid white;
+  color: white;
+}
+
+body.light-mode .nav-active li {
+  border-bottom: 2px solid black;
+  color: black;
+}
+
+.navbar-title li {
+  transition: all 0.3s ease;
+}
   
 
 .navbar-title{
@@ -91,24 +105,45 @@ body.dark-mode .navbar-container {
 .profile{
     position: absolute;
     top: 60px;
-    right: 0;
+    right: 1px;
     padding: 8px 0;
-    background-color: rgb(49, 39, 39);
     cursor: pointer;
 }
 
-.profile li{
-    list-style: none;
-    padding: 6px 16px;
+body.dark-mode .profile{
+  background-color: #000;
+  border: 0.5px solid white;
+}
+
+body.light-mode .profile{
+  background-color: #f2eeee;
+  border: 0.5px solid black;
+}
+
+.profile li {
+  list-style: none;
+  padding: 6px 16px;
+  border-bottom: 1px solid gray; 
+}
+
+.profile li:last-child {
+  border-bottom: none; 
 }
 
 .profile li a{
     text-decoration: none;
-    color: white;
+}
+
+body.dark-mode .profile li a{
+  color: rgb(240, 236, 236);
+}
+
+body.light-mode .profile li a{
+  color: #000;
 }
 
 .profile li a:hover{
-    color: gray;
+    background-color: gray;
 }
 
 .cart-icon {
@@ -172,14 +207,6 @@ body.dark-mode .navbar-container {
       z-index: 9998;
       font-size: 24px;
       animation: slideFadeIn 0.4s ease forwards;
-    }
-
-    body.light-mode .navbar-title.mobile-menu a li{
-      border-bottom: 1px solid black;
-    }
-
-    body.dark-mode .navbar-title.mobile-menu a li{
-      border-bottom: 1px solid white;
     }
   
     body.dark-mode .navbar-title.mobile-menu {

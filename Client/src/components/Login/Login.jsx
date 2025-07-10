@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../features/userSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import emailjs from '@emailjs/browser';
 import { FaRegEye } from "react-icons/fa";
 import './Login.css';
 
@@ -24,21 +23,11 @@ const Login = () => {
     setLoading(true);
     setError('');
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', formData,{withCredentials:true});
+      const res = await axios.post('http://localhost:5000/api/auth/login', formData);
       if (res.data && res.data.user && res.data.token) {
         const user = res.data.user;
         const token = res.data.token
         dispatch(loginSuccess({user,token}));
-
-        await emailjs.send(
-          'service_hbzi9nr',
-          'template_it093sw',
-          {
-            user_name: user.name,
-            email: user.email,
-          },
-          'RwRJqSD6wlFvHXwJN'
-        );
 
         navigate('/');
       } else {

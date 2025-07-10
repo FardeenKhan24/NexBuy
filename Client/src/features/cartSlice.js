@@ -1,9 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const token = localStorage.getItem("token");
+
 export const fetchCart = createAsyncThunk("cart/fetchCart", async () => {
   try {
-    const res = await axios.get("http://localhost:5000/api/cart/", { withCredentials: true });
+    const res = await axios.get("http://localhost:5000/api/cart/", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return res.data.items;
   } catch (err) {
     throw new Error(err.response?.data?.message || err.message);
@@ -15,7 +21,11 @@ export const addToCart = createAsyncThunk("cart/addToCart", async (productId) =>
     const res = await axios.post(
       "http://localhost:5000/api/cart/add",
       { productId },
-      { withCredentials: true }
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
     return res.data.items;
   } catch (err) {
@@ -26,7 +36,9 @@ export const addToCart = createAsyncThunk("cart/addToCart", async (productId) =>
 export const removeFromCart = createAsyncThunk("cart/removeFromCart", async (itemId) => {
   try {
     const res = await axios.delete(`http://localhost:5000/api/cart/remove/${itemId}`, {
-      withCredentials: true,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
     return res.data.items;
   } catch (err) {
@@ -39,7 +51,11 @@ export const increaseQuantity = createAsyncThunk("cart/increaseQuantity", async 
     const res = await axios.put(
       `http://localhost:5000/api/cart/increase/${itemId}`,
       {},
-      { withCredentials: true }
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
     return res.data.items;
   } catch (err) {
@@ -52,7 +68,11 @@ export const decreaseQuantity = createAsyncThunk("cart/decreaseQuantity", async 
     const res = await axios.put(
       `http://localhost:5000/api/cart/decrease/${itemId}`,
       {},
-      { withCredentials: true }
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
     return res.data.items;
   } catch (err) {
@@ -63,7 +83,9 @@ export const decreaseQuantity = createAsyncThunk("cart/decreaseQuantity", async 
 export const clearCart = createAsyncThunk("cart/clearCart", async () => {
   try {
     const res = await axios.delete("http://localhost:5000/api/cart/clear", {
-      withCredentials: true,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
     return res.data.items || [];
   } catch (err) {
@@ -77,7 +99,6 @@ const initialState = {
   error: null,
 };
 
-// Slice
 const cartSlice = createSlice({
   name: "cart",
   initialState,

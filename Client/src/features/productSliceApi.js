@@ -1,7 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+const token = localStorage.getItem("token");
+
 export const fetchProducts = createAsyncThunk("product/fetchProducts", async () => {
-  const response = await fetch("http://localhost:5000/api/product",{credentials:"include"});
+  const response = await fetch("http://localhost:5000/api/product", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch products");
+  }
+
   return response.json();
 });
 
@@ -26,7 +37,7 @@ const productSlice = createSlice({
     setPriceFilter: (state, action) => {
       state.priceFilter = action.payload;
     },
-    setSearchQuery: (state, action) => { 
+    setSearchQuery: (state, action) => {
       state.searchQuery = action.payload;
     },
     toggleLike: (state, action) => {
@@ -62,28 +73,37 @@ const productSlice = createSlice({
 
       state.filteredProducts = filtered;
     },
-    clearFilter : (state) => {
-      state.filter = "All",
-      state.priceFilter = "default",
-      state.searchQuery = ""
-    }
+    clearFilter: (state) => {
+      state.filter = "All";
+      state.priceFilter = "default";
+      state.searchQuery = "";
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchProducts.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    }),
-    builder.addCase(fetchProducts.fulfilled, (state, action) => {
-      state.loading = false;
-      state.products = action.payload;
-      state.filteredProducts = action.payload;
-    }),
-    builder.addCase(fetchProducts.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.error.message;
-    });
+    builder
+      .addCase(fetchProducts.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.products = action.payload;
+        state.filteredProducts = action.payload;
+      })
+      .addCase(fetchProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 
-export const { setFilter, setPriceFilter, setSearchQuery, applyFilter, toggleLike,clearFilter } = productSlice.actions;
+export const {
+  setFilter,
+  setPriceFilter,
+  setSearchQuery,
+  applyFilter,
+  toggleLike,
+  clearFilter,
+} = productSlice.actions;
+
 export default productSlice.reducer;

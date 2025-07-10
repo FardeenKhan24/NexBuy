@@ -10,7 +10,6 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa6";
 
 const About = () => {
-
   return (
     <div className="about-container">
       <div className="about">
@@ -40,10 +39,11 @@ const About = () => {
 
         <h1>A Glimpse into the Backend:</h1>
         <p>
-          While my expertise primarily lies in frontend development, I’ve also
-          integrated backend functionality using Node.js, Express.js, and
-          MongoDB to implement user registration and login, enabling secure
-          authentication and seamless user access.
+          I specialize in full-stack development, utilizing Node.js, Express.js,
+          and MongoDB on the backend to implement secure user registration,
+          login, and authentication, along with features like product
+          management, cart functionality, and order history to enhance the
+          overall shopping experience.
         </p>
         <div className="all-icos">
           <div className="icon-block">
@@ -55,7 +55,7 @@ const About = () => {
             <p>Express</p>
           </div>
           <div className="icon-block">
-            <BiLogoMongodb className="mongo-icon"/>
+            <BiLogoMongodb className="mongo-icon" />
             <p>MongoDB</p>
           </div>
         </div>
@@ -67,15 +67,28 @@ const About = () => {
           journey!
         </p>
         <div className="react-icos">
-          <Link
-            to="https://www.linkedin.com/in/fardeen-khan-0a7844264/"
-            className="linkedin-icon"
-          >
-            <FaLinkedin />
-          </Link>
-          <Link to="https://github.com/FardeenKhan24/NexBuy">
-            <FaGithub className="git-ico" />
-          </Link>
+          <div className="icon-block">
+            <Link
+              to="https://www.linkedin.com/in/fardeen-khan-0a7844264/"
+              className="linkedin-icon"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin />
+            </Link>
+            <p>LinkedIn</p>
+          </div>
+          <div className="icon-block">
+            <Link
+              to="https://github.com/FardeenKhan24/NexBuy"
+              className="git-ico"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub />
+            </Link>
+            <p>GitHub</p>
+          </div>
         </div>
       </div>
     </div>

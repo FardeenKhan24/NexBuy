@@ -1,6 +1,8 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const generateToken = require('../utils/generateToken');
+const sendLoginEmail = require('../utils/sendLoginEmail'); 
+const sendRegisterEmail = require('../utils/sendRegisterEmail');
 
 exports.register = async (req, res) => {
   const { name, email, password, confirmPassword } = req.body;
@@ -20,12 +22,7 @@ exports.register = async (req, res) => {
     await newUser.save();
     const token = generateToken(newUser._id);
 
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'strict',
-      maxAge: 1 * 24 * 60 * 60 * 1000, 
-    });
+    await sendRegisterEmail(newUser.name, newUser.email);
 
     res.status(201).json({
       message: "User registered successfully",
@@ -50,12 +47,7 @@ exports.login = async (req, res) => {
 
     const token = generateToken(user._id);
 
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
+    await sendLoginEmail(user.name, user.email);
 
     res.status(200).json({
       message: "Login successful",
@@ -68,13 +60,6 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.logoutUser = (req, res) => {
-  res.clearCookie('token', {
-    httpOnly: true,
-    sameSite: 'Lax',
-  });
-  res.status(200).json({ message: 'Logged out successfully' });
-};
 
 
 
