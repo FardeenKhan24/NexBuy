@@ -30,8 +30,8 @@ const Login = () => {
         const user = res.data.user;
         const token = res.data.token
         dispatch(loginSuccess({user,token}));
-        dispatch(fetchCart());
         dispatch(fetchProducts())
+        dispatch(fetchCart());
         navigate('/');
       } else {
         setError('Login successful but user data is missing in response.');
