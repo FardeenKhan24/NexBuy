@@ -23,7 +23,9 @@ const Navbar = () => {
   const likedProducts = useSelector((state) => state.product.likedProducts);
   const allProducts = useSelector((state) => state.product.products);
   const darkMode = useSelector((state) => state.theme.darkMode);
-  const cartItems = useSelector((state) => state.cart.cartItems);
+  const { cartItems, loading: cartLoading } = useSelector(
+    (state) => state.cart
+  );
   const user = useSelector((state) => state.user.user);
 
   const likedProductDetails = Array.isArray(allProducts)
@@ -89,8 +91,12 @@ const Navbar = () => {
             <Link to="/cart">
               <li className="cart-icon">
                 <FaShoppingCart />
-                {cartItems.length > 0 && (
-                  <span className="cart-badge">{cartItems.length}</span>
+                {cartLoading ? (
+                  <span className="cart-badge">...</span>
+                ) : (
+                  cartItems.length > 0 && (
+                    <span className="cart-badge">{cartItems.length}</span>
+                  )
                 )}
               </li>
             </Link>
