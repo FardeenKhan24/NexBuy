@@ -28,7 +28,7 @@ const Register = () => {
     setLoading(true);
     try {
       setError("");
-      const res = await axios.post("http://localhost:5000/api/auth/register",formData);
+      const res = await axios.post("http://localhost:5000/api/register",formData);
       if (res.data.newUser && res.data.token) {
         dispatch(loginSuccess({ user: res.data.newUser, token: res.data.token }));
         navigate("/");
