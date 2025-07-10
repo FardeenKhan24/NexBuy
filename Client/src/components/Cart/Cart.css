@@ -71,13 +71,18 @@ body.light-mode .cart-container1{
 }
 
 body.dark-mode .order-container{
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3); 
 }
 
 body.light-mode .order-container{
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
+    border: 2px solid wheat;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); 
+
 }
 
 body.dark-mode .quantity button{

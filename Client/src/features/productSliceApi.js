@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const token = localStorage.getItem("token");
 
 export const fetchProducts = createAsyncThunk("product/fetchProducts", async () => {
-  const response = await fetch("http://localhost:5000/api/product", {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/api/product`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

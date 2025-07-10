@@ -5,7 +5,7 @@ const token = localStorage.getItem("token");
 
 export const fetchCart = createAsyncThunk("cart/fetchCart", async () => {
   try {
-    const res = await axios.get("http://localhost:5000/api/cart/", {
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/cart/`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -19,7 +19,7 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async () => {
 export const addToCart = createAsyncThunk("cart/addToCart", async (productId) => {
   try {
     const res = await axios.post(
-      "http://localhost:5000/api/cart/add",
+      `${import.meta.env.VITE_API_URL}/api/cart/add`,
       { productId },
       {
         headers: {
@@ -35,7 +35,7 @@ export const addToCart = createAsyncThunk("cart/addToCart", async (productId) =>
 
 export const removeFromCart = createAsyncThunk("cart/removeFromCart", async (itemId) => {
   try {
-    const res = await axios.delete(`http://localhost:5000/api/cart/remove/${itemId}`, {
+    const res = await axios.delete(`${import.meta.env.VITE_API_URL}/api/cart/remove/${itemId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -49,7 +49,7 @@ export const removeFromCart = createAsyncThunk("cart/removeFromCart", async (ite
 export const increaseQuantity = createAsyncThunk("cart/increaseQuantity", async (itemId) => {
   try {
     const res = await axios.put(
-      `http://localhost:5000/api/cart/increase/${itemId}`,
+      `${import.meta.env.VITE_API_URL}/api/cart/increase/${itemId}`,
       {},
       {
         headers: {
@@ -66,7 +66,7 @@ export const increaseQuantity = createAsyncThunk("cart/increaseQuantity", async 
 export const decreaseQuantity = createAsyncThunk("cart/decreaseQuantity", async (itemId) => {
   try {
     const res = await axios.put(
-      `http://localhost:5000/api/cart/decrease/${itemId}`,
+      `${import.meta.env.VITE_API_URL}/api/cart/decrease/${itemId}`,
       {},
       {
         headers: {
@@ -82,7 +82,7 @@ export const decreaseQuantity = createAsyncThunk("cart/decreaseQuantity", async 
 
 export const clearCart = createAsyncThunk("cart/clearCart", async () => {
   try {
-    const res = await axios.delete("http://localhost:5000/api/cart/clear", {
+    const res = await axios.delete(`${import.meta.env.VITE_API_URL}/api/cart/clear`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

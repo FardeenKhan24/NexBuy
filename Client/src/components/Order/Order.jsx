@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchOrders } from "../../features/orderSlice";
 import "./Order.css";
@@ -16,7 +17,14 @@ const Order = () => {
 
   return (
     <div className="order-page">
-      {!user && <p>Please login to view your order history.</p>}
+      {!user && (
+        <div className="login-warning">
+          <h3>Please log in to view your order history.</h3>
+          <h1>
+            <Link to="/login">Go to Login</Link>
+          </h1>
+        </div>
+      )}
 
       {user && isLoading && (
         <div className="loader-container">
@@ -46,8 +54,12 @@ const Order = () => {
           <h2>Your Order History</h2>
           {orders.map((order) => (
             <div className="order-card" key={order._id}>
-              <p><strong>Order Date:</strong> {order.orderDate}</p>
-              <p><strong>Arrival Date:</strong> {order.arrivalDate}</p>
+              <p>
+                <strong>Order Date:</strong> {order.orderDate}
+              </p>
+              <p>
+                <strong>Arrival Date:</strong> {order.arrivalDate}
+              </p>
               <div className="order-itemss">
                 {order.items.map((item, index) => (
                   <div key={index} className="order-it">
@@ -57,14 +69,18 @@ const Order = () => {
                       className="order-item-image"
                     />
                     <div>
-                      <p><strong>{item.productId.title}</strong></p>
+                      <p>
+                        <strong>{item.productId.title}</strong>
+                      </p>
                       <p>Price: Rs {item.productId.price}</p>
                       <p>Quantity: {item.quantity}</p>
                     </div>
                   </div>
                 ))}
               </div>
-              <p className="total"><strong>Total:</strong> Rs {order.total.toFixed(2)}</p>
+              <p className="total">
+                <strong>Total:</strong> Rs {order.total.toFixed(2)}
+              </p>
             </div>
           ))}
         </div>

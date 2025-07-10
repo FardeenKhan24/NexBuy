@@ -58,9 +58,7 @@ const App = () => {
             </ProtectedRoutes>
           } />
           <Route path="/order" element={
-            <ProtectedRoutes>
               <Order />
-            </ProtectedRoutes>
           } />
         </Routes>
       </main>

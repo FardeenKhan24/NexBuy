@@ -4,6 +4,12 @@
   display: block; 
 }
 
+.login-warning{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
 
 .order-card {
   border: 1px solid #ccc;

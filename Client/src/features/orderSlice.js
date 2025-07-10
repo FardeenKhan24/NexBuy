@@ -32,7 +32,7 @@ export const placeOrder = createAsyncThunk(
         cartItems: cartData,
       };
 
-      await axios.post("http://localhost:5000/api/order/send-order-email", payload, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/order/send-order-email`, payload, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -57,7 +57,7 @@ export const fetchOrders = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5000/api/order/get-orders", {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/order/get-orders`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

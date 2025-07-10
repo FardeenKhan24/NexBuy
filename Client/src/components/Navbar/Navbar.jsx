@@ -146,6 +146,7 @@ const Navbar = () => {
         <LikedProductsModal
           products={likedProductDetails}
           onClose={() => setShowLikedModal(false)}
+          user={user}
         />
       )}
     </>
