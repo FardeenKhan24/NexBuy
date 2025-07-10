@@ -5,7 +5,7 @@ import {Home,About,Login,Register,Product,ProductDetails,Cart,BuyNow,Profile,Ord
   ProtectedRoutes,PublicRoutes,fetchCart,fetchProducts} from "./routes";
 
 const App = () => {
-  const dispatch = useDispatch
+  const dispatch = useDispatch()
   const darkMode = useSelector((state) => state.theme.darkMode);
   const location = useLocation();
   const hide = location.pathname === "/login" || location.pathname === "/register";
