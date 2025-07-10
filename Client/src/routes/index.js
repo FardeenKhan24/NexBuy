@@ -12,6 +12,8 @@ import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import ProtectedRoutes from "../components/ProtectedRoutes/ProtectedRoutes";
 import PublicRoutes from "../components/PublicRoutes/PublicRoutes";
+import { fetchCart } from "../features/cartSlice";
+import { fetchProducts } from "../features/productSliceApi";
 
 export {
   Home,
@@ -28,4 +30,6 @@ export {
   Footer,
   ProtectedRoutes,
   PublicRoutes,
+  fetchCart,
+  fetchProducts
 };

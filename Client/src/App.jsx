@@ -1,19 +1,24 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { Routes, Route, useLocation } from "react-router-dom";
 import {Home,About,Login,Register,Product,ProductDetails,Cart,BuyNow,Profile,Order,Navbar,Footer,
-  ProtectedRoutes,
-  PublicRoutes,
-} from "./routes";
+  ProtectedRoutes,PublicRoutes,fetchCart,fetchProducts} from "./routes";
 
 const App = () => {
+  const dispatch = useDispatch
   const darkMode = useSelector((state) => state.theme.darkMode);
   const location = useLocation();
   const hide = location.pathname === "/login" || location.pathname === "/register";
 
   useEffect(() => {
     document.body.className = darkMode ? "dark-mode" : "light-mode";
-  }, [darkMode]);
+
+    if(localStorage.getItem("token")){
+      dispatch(fetchCart())
+    }
+
+    dispatch(fetchProducts())
+  }, [darkMode,dispatch]);
 
   return (
     <div className="App">

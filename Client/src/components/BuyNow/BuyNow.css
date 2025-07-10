@@ -30,3 +30,9 @@
     text-align: center;
     margin:20px 0;
 }
+
+@media (max-width: 767px) {
+  .buy-container {
+    padding: 0 15px; 
+  }
+}
