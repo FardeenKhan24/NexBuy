@@ -10,6 +10,7 @@ const Order = () => {
   const { orders, isLoading, error } = useSelector((state) => state.order);
 
   useEffect(() => {
+    window.scrollTo(0,0)
     if (user) {
       dispatch(fetchOrders());
     }

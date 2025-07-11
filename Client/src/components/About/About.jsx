@@ -8,8 +8,14 @@ import { SiExpress } from "react-icons/si";
 import { BiLogoMongodb } from "react-icons/bi";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa6";
+import { useEffect } from "react";
 
 const About = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  })
+
   return (
     <div className="about-container">
       <div className="about">

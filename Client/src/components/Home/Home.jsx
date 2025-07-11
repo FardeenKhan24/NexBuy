@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useEffect} from "react";
 import Landing from "../../assets/Landing.jpg";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
@@ -10,6 +10,10 @@ const Home = () => {
   const exploreTo = () => {
     navigate("/products");
   };
+
+    useEffect(() => {
+      window.scrollTo(0,0)
+    }, []);
 
   return (
     <>

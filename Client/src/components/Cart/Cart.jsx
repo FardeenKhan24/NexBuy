@@ -19,11 +19,12 @@ const Cart = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalProduct, setModalProduct] = useState(null);
   const [isBulkOrder, setIsBulkOrder] = useState(false);
-  const isOrderLoading = useSelector((state) => state.order.isLoading);
+  const [buying, setBuying] = useState(false);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const user = useSelector((state) => state.user.user);
 
   useEffect(() => {
+    window.scrollTo(0, 0); 
     dispatch(fetchCart());
   }, [dispatch]);
 
@@ -64,6 +65,7 @@ const Cart = () => {
 
 const confirmBuy = async () => {
   setShowModal(false);
+  setBuying(true);
 
   try {
     const token = localStorage.getItem("token");
@@ -124,6 +126,8 @@ const confirmBuy = async () => {
   } catch (error) {
     console.error("Order failed:", error);
     alert("Failed to place order. Try again.");
+  } finally {
+    setBuying(false); 
   }
 };
 
@@ -138,7 +142,7 @@ const confirmBuy = async () => {
 
   return (
     <>
-      {isOrderLoading && (
+      {buying && (
         <div className="loader-container">
           <div className="cube-loader">
             <div className="cube cube1"></div>
@@ -149,7 +153,7 @@ const confirmBuy = async () => {
           <p>Loading...</p>
         </div>
       )}
-      {!isOrderLoading && (
+      {!buying && (
         <>
           {cartItems.length > 0 && (
             <p onClick={() => dispatch(clearCart())} className="clear">
@@ -232,7 +236,7 @@ const confirmBuy = async () => {
                 <p className="sub">Total:</p>
                 <p>Rs {totalPrice.toFixed(2)}</p>
               </div>
-              <button onClick={handleBuy} disabled={isOrderLoading}>
+              <button onClick={handleBuy} >
                 Checkout
               </button>
             </div>

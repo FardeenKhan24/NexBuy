@@ -1,10 +1,15 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './BuyNow.css'; 
+import { useEffect } from 'react';
 
 const BuyNow = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0,0)
+  },[])
 
   if (!state) {
     navigate('/');

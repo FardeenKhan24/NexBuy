@@ -76,6 +76,7 @@ body.light-mode .product-details{
     .product-details{
         height: auto;
         width: auto;
+        padding: 12px;
     }
 }
   

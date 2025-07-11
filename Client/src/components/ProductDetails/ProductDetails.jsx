@@ -16,6 +16,7 @@ const ProductDetails = () => {
   const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
