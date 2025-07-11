@@ -236,9 +236,7 @@ const confirmBuy = async () => {
                 <p className="sub">Total:</p>
                 <p>Rs {totalPrice.toFixed(2)}</p>
               </div>
-              <button onClick={handleBuy} >
-                Checkout
-              </button>
+              <button onClick={handleBuy}>Checkout</button>
             </div>
           </div>
         </>
