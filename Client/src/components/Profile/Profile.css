@@ -38,3 +38,24 @@
     color: #555;
   }
   
+@media (max-width: 768px) {
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .profile-image img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .profile-details h2 {
+    font-size: 22px;
+  }
+
+  .profile-details p {
+    font-size: 16px;
+  }
+}

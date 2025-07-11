@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import CartImage from "../../assets/cartimg.png";
-import { placeOrder, clearOrderDetails } from "../../features/orderSlice";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchCart,
@@ -12,6 +11,7 @@ import {
 import { MdDeleteOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import "./Cart.css";
+import axios from "axios";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -20,7 +20,6 @@ const Cart = () => {
   const [modalProduct, setModalProduct] = useState(null);
   const [isBulkOrder, setIsBulkOrder] = useState(false);
   const isOrderLoading = useSelector((state) => state.order.isLoading);
-  const orderDetails = useSelector((state) => state.order.orderDetails);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const user = useSelector((state) => state.user.user);
 
@@ -63,24 +62,71 @@ const Cart = () => {
     setShowModal(true);
   };
 
-  useEffect(() => {
-    if (orderDetails) {
-      navigate("/buy", { state: orderDetails });
-      dispatch(clearOrderDetails());
-    }
-  }, [orderDetails, navigate, dispatch]);
+const confirmBuy = async () => {
+  setShowModal(false);
 
-  const confirmBuy = () => {
-    setShowModal(false);
-    dispatch(
-      placeOrder({
-        user,
-        cartItems,
-        modalProduct,
-        isBulkOrder,
-      })
+  try {
+    const token = localStorage.getItem("token");
+
+    const orderDate = new Date().toDateString();
+    const arrivalDate = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toDateString();
+
+    let cartData = [];
+    let subtotal = 0;
+
+    if (isBulkOrder) {
+      cartData = cartItems;
+      subtotal = cartItems.reduce(
+        (total, item) => total + item.product.price * item.quantity,
+        0
+      );
+    } else {
+      const item = cartItems.find((i) => i.product._id === modalProduct._id);
+      if (!item) {
+        alert("Product not found in cart");
+        return;
+      }
+      cartData = [item];
+      subtotal = item.product.price * item.quantity;
+    }
+
+    const shipping = 5;
+    const totalPrice = subtotal + shipping;
+
+    const payload = {
+      userId: user._id,
+      userName: user.name,
+      userEmail: user.email,
+      cartItems: cartData,
+    };
+
+    await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/order/send-order-email`,
+      payload,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
-  };
+
+    navigate("/buy", {
+    state: {
+      cartItems: cartData,
+      subtotal,
+      shipping,
+      totalPrice,
+      orderDate,
+      arrivalDate,
+  },
+});
+
+  } catch (error) {
+    console.error("Order failed:", error);
+    alert("Failed to place order. Try again.");
+  }
+};
+
 
   const handleIncrease = (id) => {
     dispatch(increaseQuantity(id));

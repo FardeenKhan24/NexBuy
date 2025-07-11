@@ -14,7 +14,7 @@
     height: auto;
   }
 
-  .body.light-mode .register-inner,.register-inner input{
+  body.light-mode .register-inner,.register-inner input{
     background: black;
     color: white;
   }  

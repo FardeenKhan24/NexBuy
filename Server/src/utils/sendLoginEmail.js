@@ -28,7 +28,6 @@ const sendLoginEmail = async (userName, userEmail) => {
     };
 
     await transporter.sendMail(mailOptions);
-    console.log("Login email sent to:", userEmail);
   } catch (error) {
     console.error("Error sending login email:", error);
   }
