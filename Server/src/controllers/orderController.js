@@ -17,7 +17,7 @@ exports.sendOrderEmail = async (req, res) => {
     cartItems.forEach((item, i) => {
       const { title, price } = item.product;
       const qty = item.quantity;
-      itemsList += `<li>${i + 1}. ${title} - Qty: ${qty} - Rs${price}</li>`;
+      itemsList += `<li>${i + 1}. ${title} - Qty: ${qty} - Rs ${price}</li>`;
     });
 
     const doc = new PDFDocument();
@@ -92,7 +92,7 @@ Total:      Rs ${total.toFixed(2)}
     doc.moveDown().fontSize(16).text("Items:");
     doc.fontSize(12);
     cartItems.forEach((item, i) => {
-      doc.text(`${i + 1}. ${item.product.title} - Qty: ${item.quantity} - Rs${item.product.price}`);
+      doc.text(`${i + 1}. ${item.product.title} - Qty: ${item.quantity} - Rs ${item.product.price}`);
     });
     doc.moveDown().fontSize(16).text("Billing:");
     doc.fontSize(12).text(`Subtotal: Rs ${subtotal.toFixed(2)}`);
