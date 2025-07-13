@@ -8,19 +8,7 @@ const orderSchema = new mongoose.Schema({
   },
   userName: String,
   userEmail: String,
-  items: [
-    {
-      productId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product", 
-        required: true,
-      },
-      quantity: {
-        type: Number,
-        required: true,
-      },
-    },
-  ],
+  items: Array,
   subtotal: Number,
   shipping: Number,
   total: Number,

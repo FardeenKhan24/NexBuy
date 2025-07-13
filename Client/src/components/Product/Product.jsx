@@ -26,9 +26,20 @@ const Product = () => {
     useSelector((state) => state.product);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const likedProducts = useSelector((state) => state.product.likedProducts);
+  const [showServerDelayMsg, setShowServerDelayMsg] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0,0)
+    const timeout = setTimeout(() => {
+      if (loading) {
+        setShowServerDelayMsg(true);
+      }
+    }, 5000);
+
+    return () => clearTimeout(timeout); // Cleanup on unmount or rerender
+  }, [loading]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(fetchProducts());
   }, [dispatch]);
 
@@ -83,6 +94,11 @@ const Product = () => {
           <div className="cube cube4"></div>
         </div>
         <p>Loading...</p>
+        {showServerDelayMsg && (
+          <p>
+            ⚠️ Server may take 30 to 40 seconds to load first time.
+          </p>
+        )}
       </div>
     );
   }
@@ -231,7 +247,7 @@ const Product = () => {
                         </div>
                       );
                     }
-                    
+
                     return (
                       <button
                         className="add-btn"

@@ -1,38 +1,27 @@
 const nodemailer = require("nodemailer");
 const PDFDocument = require("pdfkit");
 const Order = require("../models/Order");
+const User = require("../models/User");
 
 exports.sendOrderEmail = async (req, res) => {
-  const { userId, userName, userEmail, cartItems } = req.body;
-
   try {
-    const orderDate = new Date().toDateString();
-    const arrivalDate = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toDateString();
+    const { cartItems, orderDate, arrivalDate, subtotal, shipping, total } = req.body;
+    const userId = req.user.id;
 
-    let subtotal = 0;
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
     let itemsList = "";
-    let orderItems = [];
-
     cartItems.forEach((item, i) => {
-      const price = item.product.price;
+      const { title, price } = item.product;
       const qty = item.quantity;
-      const title = item.product.title;
-      const productId = item.product._id;
-
-      subtotal += price * qty;
       itemsList += `<li>${i + 1}. ${title} - Qty: ${qty} - Rs${price}</li>`;
-
-      orderItems.push({
-        productId,
-        quantity: qty,
-      });
     });
 
-    const shipping = 5.0;
-    const total = subtotal + shipping;
-
     const doc = new PDFDocument();
-    let buffers = [];
+    const buffers = [];
 
     doc.on("data", buffers.push.bind(buffers));
     doc.on("end", async () => {
@@ -49,7 +38,7 @@ exports.sendOrderEmail = async (req, res) => {
       const htmlContent = `
         <div style="font-family: Arial, sans-serif; padding: 20px;">
           <h2 style="color: #ff9900;">NexBuy</h2>
-          <p>Hello ${userName},</p>
+          <p>Hello ${user.name},</p>
           <p>Thank you for your order. Here's your summary:</p>
           <p><strong>Order Date:</strong> ${orderDate}</p>
           <p><strong>Estimated Arrival:</strong> ${arrivalDate}</p>
@@ -63,9 +52,9 @@ Total:      Rs ${total.toFixed(2)}
         </div>
       `;
 
-      const mailOptions = {
+      await transporter.sendMail({
         from: `"NexBuy" <${process.env.EMAIL_USER}>`,
-        to: userEmail,
+        to: user.email,
         subject: "🧾 Order Confirmation - NexBuy",
         html: htmlContent,
         attachments: [
@@ -75,15 +64,13 @@ Total:      Rs ${total.toFixed(2)}
             contentType: "application/pdf",
           },
         ],
-      };
-
-      await transporter.sendMail(mailOptions);
+      });
 
       const order = new Order({
         userId,
-        userName,
-        userEmail,
-        items: orderItems,
+        userName: user.name,
+        userEmail: user.email,
+        items: cartItems, 
         subtotal,
         shipping,
         total,
@@ -98,8 +85,8 @@ Total:      Rs ${total.toFixed(2)}
 
     doc.fontSize(20).text("NexBuy - Order Summary", { align: "center" });
     doc.moveDown();
-    doc.fontSize(14).text(`Customer Name: ${userName}`);
-    doc.text(`Email: ${userEmail}`);
+    doc.fontSize(14).text(`Customer Name: ${user.name}`);
+    doc.text(`Email: ${user.email}`);
     doc.text(`Order Date: ${orderDate}`);
     doc.text(`Estimated Arrival: ${arrivalDate}`);
     doc.moveDown().fontSize(16).text("Items:");
@@ -120,15 +107,16 @@ Total:      Rs ${total.toFixed(2)}
 };
 
 
+
 exports.getOrder = async (req, res) => {
   try {
-    const userId = req.user?.id || req.user?._id;
+    const userId = req.user?.id 
 
     if (!userId) {
       return res.status(401).json({ error: "Unauthorized - User not found" });
     }
 
-    const orders = await Order.find({ userId }).populate("items.productId");
+    const orders = await Order.find({ userId }).sort({ createdAt: -1 });
 
     res.status(200).json(orders);
   } catch (error) {

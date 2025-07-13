@@ -12,6 +12,7 @@ const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [show,setShow] = useState(false)
   const [loading, setLoading] = useState(false);
+  const [showServerDelayMsg, setShowServerDelayMsg] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -24,6 +25,9 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
+    const delayTimer = setTimeout(() => {
+      setShowServerDelayMsg(true);
+    }, 5000);
     try {
       const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/login`, formData);
       if (res.data && res.data.user && res.data.token) {
@@ -39,6 +43,7 @@ const Login = () => {
     } catch (err) {
       setError(err.response?.data?.error || 'Something went wrong');
     } finally {
+      clearTimeout(delayTimer)
       setLoading(false);
     }
   };
@@ -53,7 +58,12 @@ const Login = () => {
           <div className="cube cube3"></div>
           <div className="cube cube4"></div>
         </div>
-        <p>Loading...</p>
+        <p>Logging...</p>
+        {showServerDelayMsg && (
+            <p>
+              ⚠️ Server may take 30 to 40 seconds to load first time.
+            </p>
+          )}
       </div>
       ) : (
         <div className='login-outer'>

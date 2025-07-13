@@ -65,15 +65,15 @@ const Order = () => {
                 {order.items.map((item, index) => (
                   <div key={index} className="order-it">
                     <img
-                      src={item.productId.image}
-                      alt={item.productId.title}
+                      src={item.product.image}
+                      alt={item.product.title}
                       className="order-item-image"
                     />
                     <div>
                       <p>
-                        <strong>{item.productId.title}</strong>
+                        <strong>{item.product.title}</strong>
                       </p>
-                      <p>Price: Rs {item.productId.price}</p>
+                      <p>Price: Rs {item.product.price}</p>
                       <p>Quantity: {item.quantity}</p>
                     </div>
                   </div>

@@ -96,9 +96,11 @@ const confirmBuy = async () => {
     const totalPrice = subtotal + shipping;
 
     const payload = {
-      userId: user._id,
-      userName: user.name,
-      userEmail: user.email,
+      orderDate,
+      arrivalDate,
+      subtotal,
+      shipping,
+      total: totalPrice,
       cartItems: cartData,
     };
 
