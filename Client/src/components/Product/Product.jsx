@@ -35,7 +35,7 @@ const Product = () => {
       }
     }, 5000);
 
-    return () => clearTimeout(timeout); // Cleanup on unmount or rerender
+    return () => clearTimeout(timeout); 
   }, [loading]);
 
   useEffect(() => {

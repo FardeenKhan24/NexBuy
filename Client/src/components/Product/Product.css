@@ -322,8 +322,6 @@ body.light-mode .sort-container select {
 
 .sort-container select{
     padding: 6px 16px;
-    /* background-color: black;
-    color: white; */
     height: 40px;
     border-radius: 5px;
     font-size: 16px;
