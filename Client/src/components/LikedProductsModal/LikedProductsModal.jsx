@@ -52,7 +52,7 @@ const LikedProductsModal = ({ products, onClose, user }) => {
 
 LikedProductsModal.propTypes = {
   products: PropTypes.array.isRequired,
-  user: PropTypes.object, // optional object
+  user: PropTypes.object, 
   onClose: PropTypes.func.isRequired,
 };
 
